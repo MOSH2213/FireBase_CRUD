@@ -47,6 +47,7 @@ public class AddCourseActivity extends AppCompatActivity {
         addcourseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                loadingPB.setVisibility(View.VISIBLE);
                 String courseName = courseNameEdt.getText().toString();
                 String coursePrice = coursePriceEdt.getText().toString();
                 String suitedFor = courseSuitedForEdt.getText().toString();
@@ -59,6 +60,7 @@ public class AddCourseActivity extends AppCompatActivity {
                 databseReference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        loadingPB.setVisibility(View.GONE);
                         databseReference.child(courseID).setValue(courseRVModal);
                         Toast.makeText(AddCourseActivity.this,"Course Added...",Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(AddCourseActivity.this,MainActivity.class));
